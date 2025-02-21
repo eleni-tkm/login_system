@@ -1,0 +1,430 @@
+ body{
+    font-family:"Montserrat", Sans-serif;
+    color: black;
+ }
+ 
+ /* Splash screen styles */
+ #splash {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    font-family:"Montserrat", Sans-serif;
+    background-color: #42786A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+
+#main-content {
+    display: none;
+
+    background: linear-gradient(rgba(40, 94, 80, 0.384), rgba(40, 94, 80, 0.384)), url("./assets/renata_backr_5000px-scaled.jpg");
+    font-family:"Montserrat", Sans-serif;
+    color: black;
+    padding-bottom: 70px;
+
+    
+}
+
+#generalDropdown{
+    color: rgb(245, 245, 245) !important;
+}
+
+/* .pressed { */
+    /* box-shadow: 0 3px 4px 0 #DBEDF3; */
+    /* opacity: 0.5; */
+    /* font-size: 1.3rem;
+  } */
+#generalDropdown:hover{
+
+    font-size: 1.3rem;
+    
+}
+/* Submenu positioning */
+.dropdown-menu {
+    position: static;
+    --bs-dropdown-link-active-bg: rgba(58, 247, 200, 0.568);
+    --bs-dropdown-link-color: rgba(20, 20, 20, 0.753);
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+/* li > a{
+    color:rgba(58, 247, 200, 0.452) !important;
+    font-weight:bold !important;
+    font-size: larger;
+} */
+
+
+
+@media only screen and (max-width: 992px) {
+    #navbarNavDropdown  {
+        padding-left: 2% ;
+    }
+
+    h1{
+        font-size: 2rem !important;
+    }
+
+    p{
+        font-size: 17px;
+    }
+
+    .item-b img{
+        height: 120px;
+    }
+
+}
+
+@media only screen and (max-width: 600px){
+    #navbarNavDropdown {
+        padding-left: 3%;
+    }
+
+    .dropdown-item  {
+        font-size: 0.7rem;
+    }
+
+    h1{
+        font-size: 1.35rem !important;
+        margin-top: 15px;
+    }
+
+    p{
+        font-size: 12px;
+        
+    }
+
+
+    footer span{
+        font-size: 10px;
+        padding-top: 10px;
+    }
+
+    .ms-3 svg {
+        width: 14px;
+        height: 14px;
+    }
+	
+
+
+} 
+
+#Last{
+    border-radius: 50% !important;
+
+}
+
+#mainPage{          
+    width: 100%;
+    height: 50vh;
+    /* background-color: rgba(58, 247, 200, 0.452); */
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+
+}
+
+.parallax {
+    /* The image used */
+    background-image: url("./assets/12.png");
+
+    /* Set a specific height */
+    min-height: 500px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/* When nav items are clicked */
+.dropdown-item:focus{
+color:rgb(54, 54, 54) !important;
+font-weight:bold;
+}
+
+.outerContainer{
+    display: flex;
+    width:100%;
+    /*height: 80vh;*/
+    flex-direction: column;
+    
+    justify-content: center;
+    
+}
+
+
+.item-a{
+    align-self: end;
+}
+
+.item-b{
+    align-self: end;
+}
+
+h1{
+    font-family: "Open Sans", sans-serif;
+    font-weight:800 !important;
+    color: rgb(0, 0, 0);
+    padding: 5px;
+   
+    font-size: 3rem;
+}
+
+p{
+    font-family: "Montserrat", sans-serif;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+}
+
+@media (min-width: 992px) {
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+    position: absolute;
+    }
+
+    .container{
+
+    grid-gap: 30px;
+    }
+
+    .item-b img{
+        height: 200px;
+    }
+
+    .item-a{
+        align-self: center;
+    }
+
+}
+
+.btn-primary{
+    color: #000000 !important;
+    background-color:#42786A !important;
+    border-color: #285E50 !important;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+}
+
+.shadow-sm{
+    flex-direction: column;
+}
+
+.card-body{
+    justify-content: center;
+    align-items: center;
+}
+
+.flag-button {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+.flag-button img {
+    width: 30px;
+   
+}
+
+span>strong{
+    font-size: 2rem;
+    color: #285E50;
+}
+
+.nav-item>a.nav-link:hover{
+
+    font-size: 1.2rem;
+}
+
+.btn-primary{
+    font-weight: 600;
+}
+
+.fw-light{
+
+    font-weight: 400 !important;
+}
+
+.hidden {
+    display: none;
+  }
+
+  .col {
+    cursor: pointer; /* Changes cursor to pointer on hover */
+  }
+
+
+  .col:hover .card {
+    transform: scale(1.03); /* Slight zoom effect */
+    transition: transform 0.2s ease-in-out;
+  }
+
+  /* Target only the form with the specific id */
+#staff-addition-form {
+    background: #ffffff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto; /* Center the form horizontally */
+}
+
+#staff-addition-form h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#staff-addition-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+#staff-addition-form input[type="text"],
+#staff-addition-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+#staff-addition-form button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#staff-addition-form button:hover {
+    background: #45a049;
+}
+
+#staff-addition-form input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Style the table header */
+.table-header {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    font-weight: bold;
+    padding: 10px 0;
+    border-radius: 5px;
+}
+
+/* Style each table row */
+.table-row {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+/* Add alternating row colors */
+.table-row-even {
+    background-color: #f9f9f9;
+}
+
+.table-row-odd {
+    background-color: #ffffff;
+}
+
+/* Center-align text in cells */
+.themed-grid-col {
+    padding: 8px 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Add hover effect */
+.table-row:hover {
+    background-color: #f1f1f1 !important;
+}
+
+/* Optional: Add spacing between the container and viewport */
+.container.deleteStaff{
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;;
+}
+
+/* Ensure the container doesn't stretch too wide */
+.container.deleteStaff {
+    max-width: 900px !important;
+}
+
+.dropdown{
+    align-self: flex-end !important;
+}
+
+mark {
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+  }
+  
+
+.active > .page-link, .page-link.active {
+        z-index: 3;
+        color: black !important;
+        font-weight: bold !important;
+        background-color: #42786A !important;
+        border-color:  #42786A !important;
+}
+  
+
+.pagination {
+	--bs-pagination-padding-x: 0.75rem;
+	--bs-pagination-padding-y: 0.375rem;
+	--bs-pagination-font-size: 1rem;
+	--bs-pagination-color: black !important;
+	--bs-pagination-bg: #B9CBC6 !important;
+	--bs-pagination-border-width: var(--bs-border-width);
+	--bs-pagination-border-color: #879994 !important;
+	--bs-pagination-border-radius: var(--bs-border-radius);
+	--bs-pagination-hover-color: #000;
+	--bs-pagination-hover-bg: #879994 !important;
+	--bs-pagination-hover-border-color: #b9cbc6;
+	--bs-pagination-focus-color: var(--bs-link-hover-color);
+	--bs-pagination-focus-bg: var(--bs-secondary-bg);
+	--bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+	--bs-pagination-active-color: #fff;
+	--bs-pagination-active-bg: #0d6efd;
+	--bs-pagination-active-border-color: #0d6efd;
+	--bs-pagination-disabled-color: var(--bs-secondary-color);
+	--bs-pagination-disabled-bg: var(--bs-secondary-bg);
+	--bs-pagination-disabled-border-color: var(--bs-border-color);
+	list-style: none;
+}
+
+.table-striped > tbody > tr:nth-of-type(2n+1) > * {
+	--bs-table-color-type: var(--bs-table-striped-color);
+	--bs-table-bg-type: rgb(185, 203, 198);
+}
+

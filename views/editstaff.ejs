@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="/styles.css" rel="stylesheet">
+
+  </head>
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Expand at md</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarsExample04">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="/register">Register</a>
+              </li> -->
+              <!-- <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li> -->
+            </ul>
+            <form role="search">
+              <input 
+                class="form-control" 
+                type="search" 
+                placeholder="Search" 
+                aria-label="Search" 
+                value="<%= search || '' %>">
+            </form>
+            
+          </div>
+        </div>
+      </nav>
+
+    
+<!-- Outer container for centering -->
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+  <div class="container">
+    <!-- <div class="row mb-3 text-center">
+      <div class="col-3 themed-grid-col">Name</div>
+      <div class="col-3 themed-grid-col">Sirname</div>
+      <div class="col-3 themed-grid-col">Specialization</div>
+      <div class="col-3 themed-grid-col">Email</div>
+    </div> --> 
+    <% function highlightMatch(text, search) { %>
+        <%- (search && search.length > 0) 
+            ? text.replace(new RegExp(search, 'gi'), match => `<span style="background-color: yellow;">${match}</span>`) 
+            : text %>
+      <% } %>
+      
+      
+      
+    
+    
+      <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Sirname</th>
+            <th>Specialization</th>
+            <th>Email</th>
+            <th>Nationallity</th>
+        </tr>
+        <% scientificStaff.forEach(function(staff) { %>
+            <tr>
+                <form action="/savechange" method="POST">
+                    <input type="hidden" name="id" value="<%- staff.id %>">
+                    <td>
+                        <input type="text" 
+                               name="Name"
+                               value="<%= staff.Name %>"
+                               style="background-color: <%= search && staff.Name.includes(search.toLowerCase()) ? 'yellow' : 'transparent' %>">
+                    </td>
+                    <td>
+                        <input type="text" 
+                               name="Sirname"
+                               value="<%= staff.Sirname %>"
+                               style="background-color: <%= search && staff.Sirname.includes(search.toLowerCase().trim()) ? 'yellow' : 'transparent' %>">
+                    </td>
+                    <td>
+                        <input type="text" 
+                               name="Specialization"
+                               value="<%= staff.Specialization %>"
+                               style="background-color: <%= search && staff.Specialization.includes(search.toLowerCase().trim()) ? 'yellow' : 'transparent' %>">
+                    </td>
+                    <td>
+                        <input type="text" 
+                               name="Email"
+                               value="<%= staff.Email %>"
+                               style="background-color: <%= search && staff.Email.includes(search) ? 'yellow' : 'transparent' %>">
+                    </td>
+                    
+                    <td>
+                        <input type="text" 
+                               name="Nationallity"
+                               value="<%= staff.Nationallity %>"
+                               style="background-color: <%= search && staff.Nationallity.includes(search) ? 'yellow' : 'transparent' %>">
+                    </td>
+                    
+                    <td>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-floppy-fill"> Save</i>
+                        </button>
+                    </td>
+                </form>
+            </tr>
+        <% }); %>
+    </table>
+    
+
+
+  
+<!-- Pagination Controls -->
+<nav aria-label="Page navigation" class="mt-4">
+  <ul class="pagination justify-content-center">
+    <% if (currentPage > 1) { %>
+      <li class="page-item">
+        <a class="page-link" href="/editstaff?page=<%= currentPage - 1 %>&limit=<%= limit %>">Previous</a>
+      </li>
+    <% } %>
+
+    <% pages.forEach(function(page) { %>
+      <li class="page-item <%= page.active ? 'active' : '' %>">
+        <a class="page-link" href="/editstaff?page=<%= page.number %>&limit=<%= limit %>&search=<%= search %>"><%= page.number %></a>
+      </li>
+    <% }); %>
+
+    <% if (currentPage < pageCount) { %>
+      <li class="page-item">
+        <a class="page-link" href="/editstaff?page=<%= currentPage + 1 %>&limit=<%= limit %>">Next</a>
+      </li>
+    <% } %>
+  </ul>
+</nav>
+
+  
+
+</div>
+
+
+
+
+  
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script>
+document.querySelector('input[type="search"]').addEventListener("input", async function (e) {
+  const query = e.target.value.trim();
+
+  if (query.length >= 2 || query.length === 0) { // Search on >=2 chars or clear on empty
+    try {
+      const response = await fetch(`/editstaff?search=${encodeURIComponent(query)}&limit=10&page=1`);
+      const html = await response.text();
+
+      // Parse the response and update the page
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+      const newContent = doc.querySelector(".container"); // Select the container with updated content
+
+      // Replace the old container with the new one
+      const oldContent = document.querySelector(".container");
+      oldContent.replaceWith(newContent);
+
+      // Reinitialize Bootstrap components (optional, if needed)
+      const scriptTags = doc.querySelectorAll("script");
+      scriptTags.forEach(script => {
+        const newScript = document.createElement("script");
+        newScript.src = script.src;
+        document.body.appendChild(newScript);
+      });
+
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
+  }
+});
+
+
+  </script>
+
+<script>
+    async function saveChanges(id) {
+      const name = document.getElementById(`name-${id}`).value;
+      const sirname = document.getElementById(`sirname-${id}`).value;
+      const specialization = document.getElementById(`specialization-${id}`).value;
+      const email = document.getElementById(`email-${id}`).value;
+      const nationallity = document.getElementById(`nationallity-${id}`).value;
+  
+      // Build the data object dynamically to only send updated fields
+      const data = {};
+      if (name) data.Name = name;
+      if (sirname) data.Sirname = sirname;
+      if (specialization) data.Specialization = specialization;
+      if (email) data.Email = email;
+      if (nationallity) data.Nationallity = nationallity;
+  
+      try {
+        const response = await fetch(`/savechange/${id}`, {
+          method: 'PATCH', // Use PATCH for partial updates
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+  
+        const result = await response.json();
+        if (response.ok) {
+          alert(result.message); // Success message
+        } else {
+          alert(`Error: ${result.message}`); // Error message
+        }
+      } catch (error) {
+        console.error("Error saving changes:", error);
+        alert("An unexpected error occurred.");
+      }
+    }
+  </script>
+  <script src="/index.js"></script>
+  
+</body>
+
+</html>

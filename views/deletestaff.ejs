@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="/styles.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Expand at md</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarsExample04">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+            </ul>
+            <form role="search">
+              <input 
+                class="form-control" 
+                type="search" 
+                placeholder="Search" 
+                aria-label="Search" 
+                value="<%= search || '' %>">
+            </form>
+          </div>
+        </div>
+      </nav>
+
+<!-- Outer container for centering -->
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+  <div class="container deleteStaff">
+  
+    <% function highlightMatch(text, search) { %>
+      <%- (search && search.length > 0) 
+          ? text.replace(new RegExp(search, 'gi'), match => `<mark>${match}</mark>`) 
+          : text %>
+    <% } %>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Sirname</th>
+                <th>Specialization</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% scientificStaff.forEach(function(staff) { %>
+            <tr>
+                <td><%- highlightMatch(staff.Name, search) %></td>
+                <td><%- highlightMatch(staff.Sirname, search) %></td>
+                <td><%- highlightMatch(staff.Specialization, search) %></td>
+                <td><%- highlightMatch(staff.Email, search) %></td>
+                <td><%- highlightMatch(staff.Nationallity, search) %></td>
+                <td>
+                    <!-- Delete Button -->
+                    <form action="/deleteStaff/<%- staff.id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this staff member?');">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <nav aria-label="Page navigation" class="mt-4">
+      <ul class="pagination justify-content-center">
+        <% if (currentPage > 1) { %>
+          <li class="page-item">
+            <a class="page-link" href="/deletestaff?page=<%= currentPage - 1 %>&limit=<%= limit %>">Previous</a>
+          </li>
+        <% } %>
+
+        <% pages.forEach(function(page) { %>
+          <li class="page-item <%= page.active ? 'active' : '' %>">
+            <a class="page-link" href="/deletestaff?page=<%= page.number %>&limit=<%= limit %>&search=<%= search %>"><%= page.number %></a>
+          </li>
+        <% }); %>
+
+        <% if (currentPage < pageCount) { %>
+          <li class="page-item">
+            <a class="page-link" href="/deletestaff?page=<%= currentPage + 1 %>&limit=<%= limit %>">Next</a>
+          </li>
+        <% } %>
+      </ul>
+    </nav>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    
+    document.querySelector('input[type="search"]').addEventListener("input", async function (e) {
+      const query = e.target.value.trim();
+  
+      if (query.length >= 2 || query.length === 0) { // Search on >=2 chars or clear on empty
+        try {
+          const response = await fetch(`/deletestaff?search=${encodeURIComponent(query)}&limit=10`);
+          const html = await response.text();
+  
+          // Parse the response and update the page
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, "text/html");
+          const newContent = doc.querySelector(".container"); // Adjust selector to your main results container
+  
+          document.querySelector(".container").replaceWith(newContent);
+        } catch (error) {
+          console.error("Error fetching search results:", error);
+        }
+      }
+    });
+  
+  
+    </script>
+    <script src="/index.js"></script>
+</body>
+</html>
